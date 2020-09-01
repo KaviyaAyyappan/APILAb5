@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="productList"> </table>
+
+    <script>
+        var table=document.getElementById("productList");
+
+        fetch("http://localhost:51995/api/products")
+        .then(res=>res.json())
+        .then(data=>{
+            data.forEach(product => {
+
+                //creating new table row
+                let tr = document.createElement("tr");
+
+                let id = document.createElement("td");
+                id.innerHTML = product.id;
+
+                let name = document.createElement("td");
+                name.innerHTML = product.name;
+
+                let description=document.createElement("td")
+                description.innerHTML=product.description;
+
+                let price=document.createElement("td")
+                price.innerHTML=product.price;
+
+                tr.appendChild(id);
+                tr.appendChild(name);
+                tr.appendChild(description);
+                tr.appendChild(price);
+
+                table.appendChild(tr);
+
+                
+            });
+        })
+    </script>
+
+</body>
+</html>
